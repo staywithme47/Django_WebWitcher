@@ -1,0 +1,25 @@
+{% extends 'witchersite/layout.html'%}
+{%load static%}
+{% block title %}
+Главная страница
+{%endblock%}
+
+
+{%block content%}
+    <div class = "features">
+        <h2>Главная страница</h2>
+        <p class="lead">
+            <br>Привет! Меня зовут Антон и это мой первый проект на Django.
+            <br>
+            <br>Проект представляет собой браузерную RPG во вселенной известной саги Ведьмак.
+            <br>
+            <br>Главный герой - Ведьмак, который сражается со случайными монстрами, из мира саги, с помощью своих способностей.
+            <br>
+            <br>Цель игры - уничтожить монстров, напавших на игрока.</p>
+
+        <form class="next_butt" action="project" target="_self">
+        <button class="btn btn-lg btn-secondary fw-bold border-white bg-white"> Проект </button>
+        </form>
+    </div>
+
+{%endblock%}

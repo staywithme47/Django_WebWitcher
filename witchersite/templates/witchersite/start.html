@@ -1,0 +1,30 @@
+{% extends 'witchersite/layout.html'%}
+{%load static%}
+
+{% block title %}
+Проект
+{%endblock%}
+
+
+{%block content%}
+<div class="features">
+    <form action="add_data" method="post">
+        {% csrf_token %}
+        <label for="witcher_level"> Введите уровень Ведьмака: </label>
+        <input id="witcher_level" type="number" name="witcher_level">
+
+        <label for="enemy_level">Введите уровень противников: </label>
+        <input id="enemy_level" type="number" name="enemy_level">
+
+        <label for="enemy_amount"> Введите количество противников: </label>
+        <input id="enemy_amount" type="number" name="enemy_amount">
+    </form>
+</div>
+
+<div class="features">
+    <form action="start_witcher" method="post">
+        {%csrf_token%}
+    <button class="btn btn-primary"> Запуск </button>
+    </form>
+</div>
+{%endblock%}

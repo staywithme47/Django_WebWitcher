@@ -1,0 +1,110 @@
+body {
+    background: #2c2c2c;
+}
+
+aside {
+    float: left;
+    background: #181818;
+    width: 20%;
+    padding: 2.5%;
+    height: 125vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+}
+
+aside img{
+    width: 125px;
+    float: left;
+}
+
+aside .logo{
+    font-size: 33px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: -1px;
+}
+
+aside h3 {
+    margin-top: 50px;
+    font-size: 28px;
+    position: relative;
+    left: -18px
+}
+
+aside ul {list-style: none}
+aside ul li {
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .3s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+
+main .features {
+    float: left;
+    color: #fff;
+    margin-top: 100px;
+    text-align: center;
+    width: 75%;
+}
+
+main .features h1 {font-size: 50px;}
+main .features p {max-width: 400px; margin: 20px auto}
+
+form {
+  margin-left: 40%;
+  width: 500px;
+  margin-top: -80px;
+  margin-bottom: 10px;
+}
+
+main .butt button{
+  margin-top: 20px;
+    position: center;
+    margin-left: 175px;
+}
+
+main .pricing-header {
+  color:#fff;
+}
+
+main .send {
+    position: center;
+    margin-left: 10px;
+}
+
+main .next_butt{
+    margin-top: 50px;
+}
+
+main .btn-warning{
+   margin-right: 220px;
+}
+
+main .initial_form{
+    margin-top: 50px;
+    margin-left: 470px;
+
+}
+
+main .send {
+    margin-top: -38px;
+    margin-left: 240px;
+}
+
+main .end_game{
+    position: center;
+}
+main #help{
+    text-align: center;
+}
+
+main #desc li{
+    text-align: center;
+}

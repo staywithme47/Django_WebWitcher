@@ -1,0 +1,24 @@
+{% extends 'witchersite/layout.html'%}
+{%load static%}
+
+{% block title %}
+Проект
+{%endblock%}
+
+
+{%block content%}
+<div class="features">
+    <h2>Вас приветствует браузерная RPG - Ведьмак</h2>
+    <p class="lead"> Для начала, введите стартовые данные</p>
+    <form class="initial_form" method="post">
+      {% csrf_token %}
+      {{form.witcher_level}}<br>
+      {{form.enemy_level}}<br>
+      {{form.enemy_amount}}<br>
+      <span> {{ error }}</span>
+    <div class="butt">
+      <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white"> Отправить </button>
+    </div>
+    </form>
+</div>
+{%endblock%}

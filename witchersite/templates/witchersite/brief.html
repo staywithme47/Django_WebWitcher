@@ -1,0 +1,110 @@
+{% extends 'witchersite/layout.html' %}
+{%load static%}
+
+{% block title %}
+Ведьмак
+{%endblock%}
+
+
+{%block content%}
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="{%static 'witchersite/js/scripts.js'%}"></script>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h2>Вас приветствует текстовая RPG - Ведьмак</h2>
+  <p class="lead">Ниже вы можете увидеть своего персонажа и противников</p>
+</div>
+<div class="d-flex card-deck mb-2 text-center text-secondary mx-auto flex-row justify-content-center" id="info">
+    <div class="card mb-2 shadow-sm" id="witcher">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal" id="name">{{witcher.name}}</h4>
+      </div>
+      <div class="card-body">
+        <h3 class="card-title pricing-card-title">{{witcher.level}} <small class="text-muted">уровень</small></h3>
+        <ul class="list-unstyled mt-3 mb-2">
+          <li>{{witcher.hp}}<small class="text-secondary" id="witcher_hp"> здоровья </small></li>
+          <li>{{witcher.attack_power}} <small class="text-secondary"> сила атаки </small> </li>
+          <li>{{witcher.accuracy}}<small class="text-secondary"> точность </small></li>
+          <li>{{witcher.energy}}<small class="text-secondary"> энергия </small></li>
+          <li>{{witcher.shield}}<small class="text-secondary"> текущий щит </small></li>
+          <li>{{witcher.swallow}}<small class="text-secondary"> Ласточка </small></li>
+            <li>{{witcher.thunder}}<small class="text-secondary"> Гром </small></li>
+            <li>{{witcher.tawny_owl}}<small class="text-secondary"> Неясыть </small></li>
+        </ul>
+      </div>
+    </div>
+    {% for el in enemy %}
+        {% if el.hp > 0 %}
+            <div class="card mb-2 shadow-sm" id="enemy">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{el.name}}</h4>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title pricing-card-title">{{el.level}} <small class="text-secondary">уровень</small></h3>
+                <ul class="list-unstyled mt-3 mb-2">
+                    <li>{{el.hp}}<small class="text-secondary"> здоровья </small></li>
+                    <li>{{el.attack_power}} <small class="text-secondary"> сила атаки </small> </li>
+                    <li>{{el.accuracy}}<small class="text-secondary"> точность </small></li>
+                </ul>
+            </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<div class="pricing-header mt-0 mx-auto text-center" id="turn">
+  <h6> Ход {{game.turn}} </h6>
+</div>
+
+<div class="d-flex card mb-2 shadow-sm" id="description">
+        <div class="card-header">
+            <h5 class="my-0 font-weight-normal text-secondary" id="help">Краткая справка по доступным действиям</h5>
+            <button id="hide">Hide</button>
+        </div>
+        <div class="card-body" id="desc">
+            <ul class="list-unstyled mt-1 mb-1">
+                <li><small class="text-secondary">1 - Быстрая атака</small> </li>
+                <li><small class="text-secondary">2- Силовая атака (Наносит увеличенный вдвое урон)</small></li>
+                <li><small class="text-secondary">3- Уклониться (Шанс промаха противников увеличивается втрое)</small></li>
+                <li><small class="text-secondary">4 - Выпить зелье Гром (Наносимый урон от атак увеличивается в 1,5 раза)</small></li>
+                <li><small class="text-secondary">5 - Выпить зелье Ласточка (Восстанавливает здоровье в количестве 20*уровень Ведьмака)</small></li>
+                <li><small class="text-secondary">6 - Вывести текущее состояние Ведьмака</small></li>
+                <li><small class="text-secondary">8 - Использовать знак Игни (Моментально наносит 25*уровень Ведьмака урона)</small></li>
+                <li><small class="text-secondary">9 - Использовать знак Квен (Накладывает на себя щит блокирующий 10*уровень Ведьмака урона)</small></li>
+                <li><small class="text-secondary">10 - Использовать знак Аксий (Гипнотизирует противника и заставляет его атаковать союзников)</small></li>
+                <li><small class="text-secondary">11 - Использовать зелье Неясыть (Увеличивает скорость восстановления энергии необходимой для знаков)</small></li>
+            </ul>
+        </div>
+        <script>
+            $('#hide').on('click', function() {
+                $('#desc').fadeToggle();
+            });
+
+        </script>
+</div>
+
+
+
+<div class="features">
+<form action="{%url 'user_action'%}" method="post" class="form-inline" id="next_action">
+    {% csrf_token %}
+    {{form.action}}
+    <div class = "send">
+    <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white mt-2 mb-2"> Отправить </button>
+    </div>
+</form>
+    <div class="card mb-1 shadow-sm" id="log">
+        <div class="card-header">
+            <h6 style="color: black" class="my-0 font-weight-normal" id="desclog">Лог боя</h6>
+        </div>
+        <div class="card-body" id="descriptlog">
+            <ul style="color: black" id="turnlog" class="list-unstyled mt-1 mb-1">
+                <li style="color: black"><small class="text-secondary"></small> </li>
+            </ul>
+        </div>
+    </div>
+<!--      <h4 style="overflow: auto; width: auto; height: 200px;" id="log"> </h4>-->
+    <form class="next_butt" action="{%url 'endgame'%}" target="_self">
+        <button class="btn btn-lg btn-secondary fw-bold border-white bg-white" type="submit"> Завершить игру </button>
+    </form>
+</div>
+{%endblock%}

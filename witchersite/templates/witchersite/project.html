@@ -1,0 +1,35 @@
+{% extends 'witchersite/layout.html'%}
+{%load static%}
+{% block title %}
+Проект
+{%endblock%}
+
+
+{%block content%}
+    <style>
+    li {
+        list-style-type: none;
+    }
+    ul {
+        margin-left: 0;
+        padding-left: 0;
+    }
+  </style>
+    <div class = "features">
+        <h2>Стек проекта:</h2>
+        <p class="lead">
+            <ul>
+                <li>Python</li>
+                <li>Django</li>
+                <li>HTML & CSS</li>
+                <li>Bootstrap</li>
+                <li>jQuery</li>
+                <li>AJAX</li>
+            </ul>
+        </p>
+        <form class="next_butt" action="welcome" target="_self">
+        <button class="btn btn-lg btn-secondary fw-bold border-white bg-white" type="submit"> Запуск </button>
+        </form>
+    </div>
+
+{%endblock%}
