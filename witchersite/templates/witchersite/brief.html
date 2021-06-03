@@ -57,8 +57,8 @@
 
 <div class="d-flex card mb-2 shadow-sm" id="description">
         <div class="card-header">
-            <h5 class="my-0 font-weight-normal text-secondary" id="help">Краткая справка по доступным действиям</h5>
-            <button id="hide">Hide</button>
+            <h5 class="my-0 font-weight-normal text-secondary" id="help">Краткая справка по доступным действиям <a href="#" id="hide">+</a> </h5>
+{#            <button id="hide">Hide</button>#}
         </div>
         <div class="card-body" id="desc">
             <ul class="list-unstyled mt-1 mb-1">
@@ -103,7 +103,7 @@
         </div>
     </div>
 <!--      <h4 style="overflow: auto; width: auto; height: 200px;" id="log"> </h4>-->
-    <form class="next_butt" action="{%url 'endgame'%}" target="_self">
+    <form class="next_butt" action="{%url 'forced_end'%}" target="_self">
         <button class="btn btn-lg btn-secondary fw-bold border-white bg-white" type="submit"> Завершить игру </button>
     </form>
 </div>

@@ -30,11 +30,11 @@ class Bandit(Unit):
             self.attack_speed = 2
             self.ability -= 1
             print('abils left', self.ability)
-            message['log'].append('Ход {0}. Бандит использовал способность "выстрел из арбалета"'.format(turn))
+            message['log'].append('\nХод {0}. Бандит использовал способность "выстрел из арбалета"'.format(turn))
             history.append('Ход {0}. Бандит использовал способность "выстрел из арбалета"'.format(turn))
 
         elif self.ability == 0 and (result == PlayerAction.igni or result == PlayerAction.kven):
-            message['log'].append('Ход {0}. Бандит не смог использовать способность "выстрел из арбалета"'.format(turn))
+            message['log'].append('\nХод {0}. Бандит не смог использовать способность "выстрел из арбалета"'.format(turn))
             history.append('Ход {0}. Бандит не смог использовать способность "выстрел из арбалета"'.format(turn))
 
     def check_dodge(self, result, turn, witcher, history, message):
@@ -43,7 +43,7 @@ class Bandit(Unit):
 
         if result == PlayerAction.power_attack:
             self.dodge = True
-            message['log'].append('Ход {}. Бандит использовал способность "Уклонение", снизив точность '
+            message['log'].append('\nХод {}. Бандит использовал способность "Уклонение", снизив точность '
                                   'Ведьмака в 2 раза'.format(turn))
             history.append('Ход {}. Бандит использовал способность "Уклонение", снизив точность Ведьмака в 2 раза'
                            .format(turn))
@@ -54,30 +54,30 @@ class Bandit(Unit):
             if self.special_ability == 1:
                 self.crying = True
                 self.special_ability -= 1
-                message['log'].append('Ход {0}. Бандит использовал способность Боевой клич'.format(turn))
+                message['log'].append('\nХод {0}. Бандит использовал способность Боевой клич'.format(turn))
                 history.append('Ход {0}. Бандит использовал способность Боевой клич'.format(turn))
 
             else:
-                message['log'].append('Ход {0}. Бандит не смог использовать способность Боевой клич'.format(turn))
+                message['log'].append('\nХод {0}. Бандит не смог использовать способность Боевой клич'.format(turn))
                 history.append('Ход {0}. Бандит не смог использовать способность Боевой клич'.format(turn))
 
     def check_protector(self, turn, history, message):
         if not self.crying:
             if random.random() < self.cry_chance:
                 self.block = True
-                message['log'].append('Ход {0}. Бандит откликнулся на боевой клич и заблокировал урон врага'
+                message['log'].append('\nХод {0}. Бандит откликнулся на боевой клич и заблокировал урон врага'
                                       .format(turn))
                 history.append('Ход {0}. Бандит откликнулся на боевой клич и заблокировал урон врага'.format(turn))
 
             else:
-                message['log'].append('Ход {0}. Бандит откликнулся, но попал впросак'.format(turn))
+                message['log'].append('\nХод {0}. Бандит откликнулся, но попал впросак'.format(turn))
                 history.append('Ход {0}. Бандит откликнулся, но попал впросак'.format(turn))
 
     def witcher_to_enemies(self, result, damage, turn, witcher, history, enemies, message):
         if result == PlayerAction.igni:
             damage = 25 * witcher.level
             self.hp -= damage
-            message['log'].append('Ход {0}. Ведьмак нанес {1} урона Бандиту знаком Игни'.format(turn, damage))
+            message['log'].append('\nХод {0}. Ведьмак нанес {1} урона Бандиту знаком Игни'.format(turn, damage))
             history.append('Ход {0}. Ведьмак нанес {1} урона Бандиту знаком Игни'.format(turn, damage))
 
         elif result == PlayerAction.attack or result == PlayerAction.power_attack:
@@ -89,16 +89,16 @@ class Bandit(Unit):
 
             if random.random() < actual_witcher_accuracy:
                 if random.random() < witcher.crit:
-                    message['log'].append('Ход {0}. Ведьмак нанес критический удар по Бандиту'.format(turn))
+                    message['log'].append('\nХод {0}. Ведьмак нанес критический удар по Бандиту'.format(turn))
                     history.append('Ход {0}. Ведьмак нанес критический удар по Бандиту'.format(turn))
                     damage = damage * 2
 
                 self.hp -= damage
-                message['log'].append('Ход {0}. Ведьмак нанес {1} урона по Бандиту'.format(turn, damage))
+                message['log'].append('\nХод {0}. Ведьмак нанес {1} урона по Бандиту'.format(turn, damage))
                 history.append('Ход {0}. Ведьмак нанес {1} урона по Бандиту'.format(turn, damage))
 
             else:
-                message['log'].append('Ход {0}. Ведьмак промахнулся по Бандиту'.format(turn))
+                message['log'].append('\nХод {0}. Ведьмак промахнулся по Бандиту'.format(turn))
                 history.append('Ход {0}. Ведьмак промахнулся по Бандиту'.format(turn))
 
     def next_action(self, result, damage, turn, witcher, history, enemies, message):
@@ -123,7 +123,7 @@ class Bandit(Unit):
                         if result == PlayerAction.igni:
                             prot_damage = 3.57 * witcher.level
                             protector.hp -= prot_damage
-                            message['log'].append('Ход {0}. Откликнувшийся получил {1} урона под действием '
+                            message['log'].append('\nХод {0}. Откликнувшийся получил {1} урона под действием '
                                                   'способности Боевой клич от знака Игни'.format(turn, prot_damage))
                             history.append('Ход {0}. Откликнувшийся получил {1} урона под действием '
                                            'способности Боевой клич от знака Игни'.format(turn, prot_damage))
@@ -131,7 +131,7 @@ class Bandit(Unit):
                         elif result == PlayerAction.attack or result == PlayerAction.power_attack:
                             if random.random() < witcher.accuracy:
                                 if random.random() < witcher.crit:
-                                    message['log'].append('Ход {0}. Ведьмак нанес критический удар по откликнувшемуся'
+                                    message['log'].append('\nХод {0}. Ведьмак нанес критический удар по откликнувшемуся'
                                                           .format(turn))
                                     history.append('Ход {0}. Ведьмак нанес критический удар по откликнувшемуся'
                                                    .format(turn))
@@ -141,16 +141,16 @@ class Bandit(Unit):
                                     prot_damage = damage / 7
 
                                 protector.hp -= prot_damage
-                                message['log'].append('Ход {0}. Ведьмак нанес {1} урона по откликнувшемуся'
+                                message['log'].append('\nХод {0}. Ведьмак нанес {1} урона по откликнувшемуся'
                                                       .format(turn, prot_damage))
                                 history.append('Ход {0}. Ведьмак нанес {1} урона по откликнувшемуся'
                                                .format(turn, prot_damage))
 
                             else:
-                                message['log'].append('Ход {0}. Ведьмак промахнулся по откликнувшемуся'.format(turn))
+                                message['log'].append('\nХод {0}. Ведьмак промахнулся по откликнувшемуся'.format(turn))
                                 history.append('Ход {0}. Ведьмак промахнулся по откликнувшемуся'.format(turn))
 
-                            message['log'].append('Ход {0}. Бандит не получил урона под действием способности Боевой клич'.format(turn))
+                            message['log'].append('\nХод {0}. Бандит не получил урона под действием способности Боевой клич'.format(turn))
                             history.append('Ход {0}. Бандит не получил урона под действием способности Боевой клич'
                                                                                                          .format(turn))
 
@@ -159,7 +159,7 @@ class Bandit(Unit):
                             prot_damage = 25 * witcher.level
                             self.hp -= prot_damage
                             message['log'].append(
-                            'Ход {0}. Бандит получил {1} урона под действием способности Боевой клич'.format(
+                            '\nХод {0}. Бандит получил {1} урона под действием способности Боевой клич'.format(
                                                                                                      turn, prot_damage))
                             history.append('Ход {0}. Бандит получил {1} урона под действием способности Боевой клич'
                                                                                              .format(turn, prot_damage))
@@ -173,7 +173,7 @@ class Bandit(Unit):
 
                             if random.random() < actual_accuracy:
                                 if random.random() < witcher.crit:
-                                    message['log'].append('Ход {0}. Ведьмак нанес критический удар по кричавшему'.format(turn))
+                                    message['log'].append('\nХод {0}. Ведьмак нанес критический удар по кричавшему'.format(turn))
                                     history.append('Ход {0}. Ведьмак нанес критический удар по кричавшему'.format(turn))
                                     prot_damage = damage * 2
 
@@ -182,16 +182,16 @@ class Bandit(Unit):
 
                                 self.hp -= prot_damage
                                 message['log'].append(
-                                'Ход {0}. Ведьмак нанес {1} урона по кричавшему'.format(turn, prot_damage))
+                                '\nХод {0}. Ведьмак нанес {1} урона по кричавшему'.format(turn, prot_damage))
                                 history.append('Ход {0}. Ведьмак нанес {1} урона по кричавшему'.format(turn, prot_damage))
 
                             else:
-                                message['log'].append('Ход {0}. Ведьмак промахнулся по кричавшему'.format(turn))
+                                message['log'].append('\nХод {0}. Ведьмак промахнулся по кричавшему'.format(turn))
                                 history.append('Ход {0}. Ведьмак промахнулся по кричавшему'.format(turn))
                     break
 
             if not alive_blockers:
-                message['log'].append('Ход {0}. Не осталось Бандитов способных откликнуться'.format(turn))
+                message['log'].append('\nХод {0}. Не осталось Бандитов способных откликнуться'.format(turn))
                 history.append('Ход {0}. Не осталось Бандитов способных откликнуться'.format(turn))
                 if self.crying:
                     self.witcher_to_enemies(result, damage, turn, witcher, history, enemies, message)
@@ -220,13 +220,13 @@ class Bandit(Unit):
                     if random.random() < self.crit:
                         critical_hit = True
                         damage = damage * 2
-                        message['log'].append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
+                        message['log'].append('\nХод {0}. Противник кританул по Ведьмаку'.format(turn))
                         history.append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
 
                     witcher.witcher_main_damage(damage, turn, history, critical_hit, message)
 
                 else:
-                    message['log'].append('Ход {0}. Противник промахнулся по Ведьмаку'.format(turn))
+                    message['log'].append('\nХод {0}. Противник промахнулся по Ведьмаку'.format(turn))
 
 
 class Ghost(Unit):
@@ -255,7 +255,7 @@ class Ghost(Unit):
                 self.last_turn_ability_used = turn
                 self.ability -= 1
                 self.in_astral = True
-                message['log'].append('Ghost in astral')
+                message['log'].append('\nGhost in astral')
                 history.append('Ход {}. Призрак ушел в Астрал'.format(turn))
 
     def next_action(self, result, damage, turn, witcher, history, enemies, message):
@@ -268,13 +268,13 @@ class Ghost(Unit):
         if result == PlayerAction.igni:
             damage = (25 * witcher.level) * k
             self.hp -= damage
-            message['log'].append('Ход {0}. Ведьмак нанес {1} урона призраку знаком Игни'. format(turn, damage))
+            message['log'].append('\nХод {0}. Ведьмак нанес {1} урона призраку знаком Игни'. format(turn, damage))
             history.append('Ход {0}. Ведьмак нанес {1} урона призраку знаком Игни'. format(turn, damage))
 
         elif result == PlayerAction.attack or result == PlayerAction.power_attack:
             if random.random() < witcher.accuracy:
                 if random.random() < witcher.crit:
-                    message['log'].append('Ход {0}. Ведьмак нанес критический удар по призраку'.format(turn))
+                    message['log'].append('\nХод {0}. Ведьмак нанес критический удар по призраку'.format(turn))
                     history.append('Ход {0}. Ведьмак нанес критический удар по призраку'.format(turn))
                     damage = (damage*2) * k
 
@@ -282,11 +282,11 @@ class Ghost(Unit):
                     damage = k*damage
 
                 self.hp -= damage
-                message['log'].append('Ход {0}. Ведьмак нанес {1} урона по Призраку'.format(turn, damage))
+                message['log'].append('\nХод {0}. Ведьмак нанес {1} урона по Призраку'.format(turn, damage))
                 history.append('Ход {0}. Ведьмак нанес {1} урона по Призраку'.format(turn, damage))
 
             else:
-                message['log'].append('Ход {0}. Ведьмак промахнулся по Призраку'.format(turn))
+                message['log'].append('\nХод {0}. Ведьмак промахнулся по Призраку'.format(turn))
                 history.append('Ход {0}. Ведьмак промахнулся по Призраку'.format(turn))
 
     def deal_damage_to_witcher(self, result, witcher, turn, history, message):
@@ -302,12 +302,12 @@ class Ghost(Unit):
             if random.random() < self.crit:
                 critical_hit = True
                 damage = damage * 2
-                message['log'].append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
+                message['log'].append('\nХод {0}. Противник кританул по Ведьмаку'.format(turn))
                 history.append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
 
             witcher.witcher_main_damage(damage, turn, history, critical_hit, message)
         else:
-            message['log'].append('Ход {0}. Противник промахнулся по Ведьмаку'.format(turn))
+            message['log'].append('\nХод {0}. Противник промахнулся по Ведьмаку'.format(turn))
 
 
 class Drowner(Unit):
@@ -339,27 +339,27 @@ class Drowner(Unit):
         if result == PlayerAction.igni:
             damage = 25 * witcher.level
             self.hp = self.hp - damage
-            message['log'].append('Ход {0}.Ведьмак нанес Утопцу {1} урона знаком Игни'.format(turn, damage))
+            message['log'].append('\nХод {0}.Ведьмак нанес Утопцу {1} урона знаком Игни'.format(turn, damage))
             history.append('Ход {0}.Ведьмак нанес Утопцу {1} урона знаком Игни'.format(turn, damage))
 
             if self.in_rage:
                 self.attack_speed = 2
-                message['log'].append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец использовал способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
             else:
                 self.attack_speed = 1
-                message['log'].append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец не смог использовать способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
 
         elif result == PlayerAction.kven:
 
             if self.in_rage:
                 self.attack_speed = 2
-                message['log'].append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец использовал способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
             else:
                 self.attack_speed = 1
-                message['log'].append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец не смог использовать способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
 
         elif result == PlayerAction.dodge:
@@ -368,42 +368,42 @@ class Drowner(Unit):
         elif witcher.hp < witcher.threshold_hp or witcher.shield > 0:
             if self.in_rage:
                 self.attack_speed = 2
-                message['log'].append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец использовал способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец использовал способность Ярость'.format(turn))
 
             else:
                 self.attack_speed = 1
-                message['log'].append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
+                message['log'].append('\nХод {0}. Утопец не смог использовать способность Ярость'.format(turn))
                 history.append('Ход {0}. Утопец не смог использовать способность Ярость'.format(turn))
 
             if (result != PlayerAction.kven or result != PlayerAction.axiy) and damage != 0:
                 if random.random() < witcher.accuracy:
                     if random.random() < witcher.crit:
-                        message['log'].append('Ход {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
+                        message['log'].append('\nХод {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
                         history.append('Ход {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
                         damage = (damage * 2)
 
                     self.hp -= damage
-                    message['log'].append('Ход {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
+                    message['log'].append('\nХод {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
                     history.append('Ход {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
 
                 else:
-                    message['log'].append('Ход {0}. Ведьмак промахнулся по Утопцу'.format(turn))
+                    message['log'].append('\nХод {0}. Ведьмак промахнулся по Утопцу'.format(turn))
                     history.append('Ход {0}. Ведьмак промахнулся по Утопцу'.format(turn))
 
         elif result == PlayerAction.attack or result == PlayerAction.power_attack:
             if random.random() < witcher.accuracy:
                 if random.random() < witcher.crit:
-                    message['log'].append('Ход {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
+                    message['log'].append('\nХод {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
                     history.append('Ход {0}. Ведьмак нанес критический удар по Утопцу'.format(turn))
                     damage = (damage * 2)
 
                 self.hp -= damage
-                message['log'].append('Ход {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
+                message['log'].append('\nХод {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
                 history.append('Ход {0}. Ведьмак нанес {1} урона по Утопцу'.format(turn, damage))
 
             else:
-                message['log'].append('Ход {0}. Ведьмак промахнулся по Утопцу'.format(turn))
+                message['log'].append('\nХод {0}. Ведьмак промахнулся по Утопцу'.format(turn))
                 history.append('Ход {0}. Ведьмак промахнулся по Утопцу'.format(turn))
 
     def deal_damage_to_witcher(self, result, witcher, turn, history, message):
@@ -421,10 +421,10 @@ class Drowner(Unit):
                 if random.random() < self.crit:
                     critical_hit = True
                     damage = damage * 2
-                    message['log'].append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
+                    message['log'].append('\nХод {0}. Противник кританул по Ведьмаку'.format(turn))
                     history.append('Ход {0}. Противник кританул по Ведьмаку'.format(turn))
 
                 witcher.witcher_main_damage(damage, turn, history, critical_hit, message)
 
             else:
-                message['log'].append('Ход {0}. Противник промахнулся по Ведьмаку'.format(turn))
+                message['log'].append('\nХод {0}. Противник промахнулся по Ведьмаку'.format(turn))

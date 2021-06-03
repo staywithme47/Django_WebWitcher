@@ -39,7 +39,7 @@ class Game:
                 defender = random.choice(self.enemies[:attacker_position] + self.enemies[attacker_position+1:])
 
                 if random.random() > accuracy:
-                    message['log'].append('Ход {0}. Противник номер {1} промахнулся по противнику номер {2} под действием Аксия'
+                    message['log'].append('\nХод {0}. Противник номер {1} промахнулся по противнику номер {2} под действием Аксия'
                                                    .format(self.turn, self.enemies.index(attacker),
                                                                                       self.enemies.index(defender)))
                     self.history.append('Ход {0}. Противник номер {1} промахнулся по противнику номер {2} под действием Аксия'
@@ -59,7 +59,7 @@ class Game:
 
                     damage = attacker.attack_power * k
                     defender.hp -= damage
-                    message['log'].append('Ход {0}. Противник номер {1} попал по противнику номер {2} по действием знака Аксий и нанес '
+                    message['log'].append('\nХод {0}. Противник номер {1} попал по противнику номер {2} по действием знака Аксий и нанес '
                       '{3} урона'.format(self.turn, self.enemies.index(attacker), self.enemies.index(defender), damage))
                     self.history.append('Ход {0}. Противник номер {1} попал по противнику номер {2} по действием знака Аксий и нанес '
                       '{3} урона'.format(self.turn, self.enemies.index(attacker), self.enemies.index(defender), damage))
@@ -67,7 +67,7 @@ class Game:
         for i in range(len(self.enemies)):
             enemy = self.enemies[i]
             if enemy == attacker:
-                message['log'].append('Противник номер {0} находится под действием аксия'.format(i))
+                message['log'].append('\nПротивник номер {0} находится под действием аксия'.format(i))
                 self.history.append('Противник номер {0} находится под действием аксия'.format(i))
                 continue
 

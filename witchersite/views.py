@@ -364,3 +364,8 @@ def end_game(request):
         }
     print(data)
     return render(request, 'witchersite/endgame.html', data)
+
+
+def forced_end(request):
+    clear_models(request)
+    return render(request, 'witchersite/endgame.html')

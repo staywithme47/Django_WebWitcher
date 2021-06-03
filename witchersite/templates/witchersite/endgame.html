@@ -13,6 +13,9 @@
 <script type="text/javascript" src="{%static 'witchersite/js/scripts.js'%}"></script>
 <div class="features" id="win">
     <h2>Игра завершена</h2>
+    {% if not winner %}
+        <p class="lead"> Вы принудительно заврешили игру</p>
+    {% endif %}
     {%if winner == 'witcher'%}
         <p class="lead"> Ведьмак победил</p>
     {%else%}
